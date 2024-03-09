@@ -1,0 +1,11 @@
+if [ $# -lt 2 ]; then
+  echo "Usage: $0 <source_directory> <destination_directory>"
+  exit 1
+fi
+source_dir="$1"
+dest_dir="$2"
+timestamp=$(date +%Y%m%d-%H%M%S)
+mkdir -p "$dest_dir"
+archive_file="$dest_dir/$(basename "$source_dir")-$timestamp.tar.gz"
+tar -czf "$archive_file" "$source_dir"
+echo "Backup created: $archive_file"
